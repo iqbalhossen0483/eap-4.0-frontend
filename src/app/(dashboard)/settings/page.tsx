@@ -1,10 +1,9 @@
 "use client";
-import { useEffect, useRef } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
-import { Upload } from "lucide-react";
+import { Avatar } from "@/components/ui/Avatar";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { Input } from "@/components/ui/Input";
+import { Typography } from "@/components/ui/Typography";
 import {
   changePasswordSchema,
   profileSchema,
@@ -17,11 +16,12 @@ import {
   useUpdateProfileMutation,
   useUploadAvatarMutation,
 } from "@/store/api/authApi";
-import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
-import { Input } from "@/components/ui/Input";
-import { Avatar } from "@/components/ui/Avatar";
-import { Typography } from "@/components/ui/Typography";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Upload } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useEffect, useRef } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 function apiMessage(err: unknown, fallback: string): string {
   return (err as { data?: { message?: string } })?.data?.message ?? fallback;
@@ -166,6 +166,7 @@ export default function SettingsPage() {
             id="current_password"
             label="Current password"
             type="password"
+            placeholder="Enter your current password"
             error={passwordForm.formState.errors.current_password?.message}
             {...passwordForm.register("current_password")}
           />
@@ -173,6 +174,7 @@ export default function SettingsPage() {
             id="new_password"
             label="New password"
             type="password"
+            placeholder="Enter your new password"
             error={passwordForm.formState.errors.new_password?.message}
             {...passwordForm.register("new_password")}
           />
@@ -180,6 +182,7 @@ export default function SettingsPage() {
             id="confirmPassword"
             label="Confirm new password"
             type="password"
+            placeholder="Confirm your new password"
             error={passwordForm.formState.errors.confirmPassword?.message}
             {...passwordForm.register("confirmPassword")}
           />

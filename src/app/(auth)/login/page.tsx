@@ -1,16 +1,16 @@
 "use client";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { AlertCircle } from "lucide-react";
-import { loginSchema, type LoginInput } from "@/schemas/auth";
+import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Input } from "@/components/ui/Input";
-import { Button } from "@/components/ui/Button";
 import { Typography } from "@/components/ui/Typography";
+import { loginSchema, type LoginInput } from "@/schemas/auth";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { AlertCircle } from "lucide-react";
+import { signIn } from "next-auth/react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -71,7 +71,7 @@ export default function LoginPage() {
           id="email"
           label="Email"
           type="email"
-          placeholder="you@example.com"
+          placeholder="Enter your email"
           error={errors.email?.message}
           {...register("email")}
         />
@@ -79,7 +79,7 @@ export default function LoginPage() {
           id="password"
           label="Password"
           type="password"
-          placeholder="••••••••"
+          placeholder="Enter your password"
           error={errors.password?.message}
           {...register("password")}
         />
@@ -99,7 +99,10 @@ export default function LoginPage() {
 
       <Typography variant="muted" className="mt-6 text-center">
         Don&apos;t have an account?{" "}
-        <Link href="/signup" className="font-medium text-primary-600 hover:underline">
+        <Link
+          href="/signup"
+          className="font-medium text-primary-600 hover:underline"
+        >
           Sign up
         </Link>
       </Typography>

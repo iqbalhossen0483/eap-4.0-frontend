@@ -1,16 +1,16 @@
 "use client";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { signIn } from "next-auth/react";
-import Link from "next/link";
-import { AlertCircle } from "lucide-react";
-import { signupSchema, type SignupInput } from "@/schemas/auth";
-import { useSignupMutation } from "@/store/api/authApi";
+import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Input } from "@/components/ui/Input";
-import { Button } from "@/components/ui/Button";
 import { Typography } from "@/components/ui/Typography";
+import { signupSchema, type SignupInput } from "@/schemas/auth";
+import { useSignupMutation } from "@/store/api/authApi";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { AlertCircle } from "lucide-react";
+import { signIn } from "next-auth/react";
+import Link from "next/link";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 export default function SignupPage() {
   const [signup] = useSignupMutation();
@@ -70,7 +70,7 @@ export default function SignupPage() {
         <Input
           id="name"
           label="Full name"
-          placeholder="Jane Doe"
+          placeholder="Enter your full name"
           error={errors.name?.message}
           {...register("name")}
         />
@@ -78,7 +78,7 @@ export default function SignupPage() {
           id="email"
           label="Email"
           type="email"
-          placeholder="you@example.com"
+          placeholder="Enter your email name"
           error={errors.email?.message}
           {...register("email")}
         />
@@ -86,7 +86,7 @@ export default function SignupPage() {
           id="password"
           label="Password"
           type="password"
-          placeholder="••••••••"
+          placeholder="Enter your password"
           error={errors.password?.message}
           {...register("password")}
         />
@@ -94,7 +94,7 @@ export default function SignupPage() {
           id="confirmPassword"
           label="Confirm password"
           type="password"
-          placeholder="••••••••"
+          placeholder="Confirm your password"
           error={errors.confirmPassword?.message}
           {...register("confirmPassword")}
         />
@@ -106,7 +106,10 @@ export default function SignupPage() {
 
       <Typography variant="muted" className="mt-6 text-center">
         Already have an account?{" "}
-        <Link href="/login" className="font-medium text-primary-600 hover:underline">
+        <Link
+          href="/login"
+          className="font-medium text-primary-600 hover:underline"
+        >
           Sign in
         </Link>
       </Typography>
