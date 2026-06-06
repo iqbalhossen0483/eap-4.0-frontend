@@ -1,26 +1,43 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Class-based dark mode (add .dark to <html>) */
+@variant dark (&:is(.dark *));
+
+/* Design tokens */
+@theme {
+  --color-primary-50: oklch(0.97 0.01 250);
+  --color-primary-100: oklch(0.93 0.04 250);
+  --color-primary-200: oklch(0.88 0.07 250);
+  --color-primary-300: oklch(0.78 0.12 250);
+  --color-primary-400: oklch(0.66 0.17 250);
+  --color-primary-500: oklch(0.55 0.2 250);
+  --color-primary-600: oklch(0.48 0.22 250);
+  --color-primary-700: oklch(0.4 0.22 250);
+  --color-primary-800: oklch(0.33 0.18 250);
+  --color-primary-900: oklch(0.27 0.14 250);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 0.75rem;
+  --radius-btn: 0.5rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100;
+    font-family: var(--font-sans);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Reusable card surface utility */
+@utility card {
+  background-color: var(--color-surface, white);
+  border: 1px solid var(--color-border, oklch(0.9 0 0));
+  border-radius: var(--radius-card);
+  padding: 1.5rem;
+}
+
+/* Toastify dark theme alignment */
+.Toastify__toast {
+  border-radius: var(--radius-btn);
 }
