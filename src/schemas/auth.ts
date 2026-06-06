@@ -36,9 +36,6 @@ export const changePasswordSchema = z
 
 export const profileSchema = z.object({
   name: z.string().min(1, "Name is required"),
-  avatar_url: z
-    .union([z.url("Enter a valid URL"), z.literal("")])
-    .optional(),
 });
 
 export type LoginInput = z.infer<typeof loginSchema>;

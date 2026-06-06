@@ -33,6 +33,10 @@ export const authApi = baseApi.injectEndpoints({
     changePassword: builder.mutation<null, ChangePasswordBody>({
       query: (body) => ({ url: "/auth/change-password", method: "POST", body }),
     }),
+    uploadAvatar: builder.mutation<User, FormData>({
+      query: (formData) => ({ url: "/auth/avatar", method: "POST", body: formData }),
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
@@ -41,4 +45,5 @@ export const {
   useGetMeQuery,
   useUpdateProfileMutation,
   useChangePasswordMutation,
+  useUploadAvatarMutation,
 } = authApi;
